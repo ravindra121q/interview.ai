@@ -21,7 +21,7 @@ export const InterviewPage = () => {
         "https://api.openai.com/v1/engines/text-davinci-003/completions",
         {
           prompt: prompt,
-          max_tokens: 15000,
+          max_tokens: 60,
           temperature: 0.5,
           top_p: 1.0,
           frequency_penalty: 0.0,
@@ -30,7 +30,7 @@ export const InterviewPage = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer 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`,
+            Authorization: `Bearer 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`,
           },
         }
       )
@@ -61,7 +61,7 @@ export const InterviewPage = () => {
           "https://api.openai.com/v1/engines/text-davinci-003/completions",
           {
             prompt: prompt,
-            max_tokens: 15000,
+            max_tokens: 60,
             temperature: 0.5,
             top_p: 1.0,
             frequency_penalty: 0.0,
@@ -70,12 +70,13 @@ export const InterviewPage = () => {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer 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`,
+              Authorization: `Bearer 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`,
             },
           }
         )
         .then((res) => {
           setLoading(false);
+
           console.log(answer);
           console.log(res.data.choices[0].text);
           alert(question, answer);
