@@ -200,7 +200,18 @@ userrouter.post("/login", async (req, res) => {
     }
   }
 })
-
+userrouter.post("/postscore",async(req,res)=>{
+  const {id,score,feedback}=req.body
+  if(id&&score&&feedback){
+    res.json("post")
+  }else{
+    res.json("error")
+  }
+})
+userrouter.get("/getscore",async(req,res)=>{
+  const {id}=req.body
+  res.json("get")
+})
 module.exports = {
   userrouter
 }
