@@ -1,20 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/login.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 export const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const loginHandler = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://slate-gray-rhinoceros-tam.cyclic.app/user/login", {
+        email,
+        password,
+      })
+      .then((res) => {
+        alert(res.data);
+      });
+  };
   return (
     <div style={{ display: "grid", placeItems: "center" }}>
       <div class="form-container">
         <p class="title">Login</p>
         <form class="form">
           <div class="input-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="" />
+            <label for="username">Email</label>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              name="username"
+              id="username"
+              placeholder=""
+            />
           </div>
           <div class="input-group">
             <label for="password">Password</label>
             <input
               type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               name="password"
               id="password"
               placeholder=""
@@ -25,7 +48,9 @@ export const LoginPage = () => {
               </a>
             </div>
           </div>
-          <button class="sign">Sign in</button>
+          <button class="sign" onClick={loginHandler}>
+            Sign in
+          </button>
         </form>
         <div class="social-message">
           <div class="line"></div>

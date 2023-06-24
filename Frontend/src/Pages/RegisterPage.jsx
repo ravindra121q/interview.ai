@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/login.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 export const RegisterPage = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const addUser = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://slate-gray-rhinoceros-tam.cyclic.app/user/signup", {
+        name,
+        email,
+        password,
+      })
+      .then((res) => {
+        setEmail("");
+        setPassword("");
+        setName("");
+        if (res.data == "exists") {
+          return alert("User Already Exists");
+        }
+        alert("Conformation Mail Sent To Your Email");
+      });
+  };
   return (
     <div style={{ display: "grid", placeItems: "center" }}>
       <div class="form-container">
@@ -9,22 +31,38 @@ export const RegisterPage = () => {
         <form class="form">
           <div class="input-group">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="" />
+            <input
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              name="username"
+              id="username"
+              placeholder=""
+            />
           </div>
           <div class="input-group">
             <label for="email">email</label>
-            <input type="text" name="email" id="email" placeholder="" />
+            <input
+              type="text"
+              name="email"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder=""
+              value={email}
+            />
           </div>
           <div class="input-group">
             <label for="password">Password</label>
             <input
               type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               name="password"
               id="password"
               placeholder=""
             />
           </div>
-          <button class="sign" style={{ marginTop: "20px" }}>
+          <button class="sign" onClick={addUser} style={{ marginTop: "20px" }}>
             Sign Up
           </button>
         </form>
