@@ -27,7 +27,7 @@ export const RegisterPage = () => {
   return (
     <div style={{ display: "grid", placeItems: "center" }}>
       <div class="form-container">
-        <p class="title">Login</p>
+        <p class="title">Sign Up</p>
         <form class="form">
           <div class="input-group">
             <label for="username">Username</label>

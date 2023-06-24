@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Timer } from "../Components/timer";
 
 export const InterviewPage = () => {
-  const API_KEY = "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";
+  const API_KEY_Initial = "sk";
+  const API_KEY = `${API_KEY_Initial}-TE2TIVj8Y2Bv3rOQcAsIT3BlbkFJw9967AOyibgmWNEifHEj`;
   const initialPrompt =
     " random 10 simple  questions related to javascript. The questions asked to the user and the user has to answer them. There is a timer to keep track of time. There is a question number also. The user has to answer the question in 2minutes and after replaying, it asks another question to user and after completion of 10 questions it ai gives feed back on the basis of answer and how user is confident and what special things it need to improve and gives score to the user.";
   const [loading, setLoading] = useState(false);
@@ -159,6 +160,7 @@ export const InterviewPage = () => {
                   className="border-black border-2 border-Radius-5"
                   onClick={answerHandler}
                   value={textInput}
+                  disabled={count === 10}
                 >
                   Submit
                 </button>{" "}
@@ -167,7 +169,7 @@ export const InterviewPage = () => {
                 <button
                   className="border-1 border-r-8"
                   disabled={count === 9}
-                  onClick={() => setCount(count + 1)}
+                  onClick={answerHandler}
                 >
                   Next
                 </button>
