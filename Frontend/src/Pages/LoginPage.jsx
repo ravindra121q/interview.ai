@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "../css/login.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const loginHandler = (e) => {
     e.preventDefault();
     axios
@@ -13,7 +15,11 @@ export const LoginPage = () => {
         password,
       })
       .then((res) => {
-        alert(res.data);
+        if (res.data == "NotFound"){
+          return alert("User Not Found");
+        } console.log(res.data);
+        localStorage.setItem("userData", JSON.stringify(res.data));
+        navigate("/");
       });
   };
   return (

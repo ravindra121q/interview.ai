@@ -85,7 +85,7 @@ export const InterviewPage = () => {
         )
         .then((res) => {
           setLoading(false);
-          const score = res.data.choices[0].text; // Assuming the score is returned in the response
+          const score = res.data.choices[0].text;
           console.log(score);
           console.log(newPrompt);
           alert(score);
